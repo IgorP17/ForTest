@@ -16,4 +16,9 @@ public class SmallTest {
         Assert.fail();
     }
 
+    @Test
+    public void Test3() {
+        System.out.println("Test 3 PASSED");
+    }
+
 }
