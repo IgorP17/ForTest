@@ -13,7 +13,7 @@ public class SmallTest {
     @Test
     public void Test2() {
         System.out.println("Test 2 fail");
-//        Assert.fail();
+        Assert.fail();
     }
 
 }
