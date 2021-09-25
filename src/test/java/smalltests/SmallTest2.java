@@ -1,3 +1,5 @@
+package smalltests;
+
 import org.junit.Test;
 
 public class SmallTest2 {
