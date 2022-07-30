@@ -3,17 +3,38 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 
-public class WireMockTest {
+import java.util.Arrays;
+
+@RunWith(Parameterized.class)
+public class WireMockTestGet {
 
     // assume we have standalone wiremock running (config see in resources)
 
     private final static String baseURI = "http://igor-virtualbox:8080";
     private final static String getPath = "/test?myid=123";
 
+    private final String path;
+    private final int respCode;
+
+    public WireMockTestGet(String path, int respCode) {
+        this.path = path;
+        this.respCode = respCode;
+    }
+
+
+    @Parameterized.Parameters(name = "{index}: path({0}), resp={1}")
+    public static Iterable<Object[]> data() {
+        return Arrays.asList(new Object[][]
+                {       {getPath, 200},
+                        {"/some_wrong_path", 404}
+                });
+    }
 
     @Test
-    public void test1() {
+    public void test() {
         RequestSpecification request = RestAssured.given();
         // Setting Request URL
         request.baseUri(baseURI);
@@ -25,14 +46,14 @@ public class WireMockTest {
                 .log().all();*/
 
         // Send request
-        Response response = request.get(getPath);
+        Response response = request.get(path);
         printResponse(response);
 
-        Assert.assertEquals(200, response.getStatusCode());
+        Assert.assertEquals(respCode, response.getStatusCode());
     }
 
-    @Test
-    public void test2(){
+    /*@Test
+    public void test2() {
         RequestSpecification request = RestAssured.given();
         // Setting Request URL
         request.baseUri(baseURI);
@@ -47,12 +68,12 @@ public class WireMockTest {
 
         Assert.assertEquals(404, response.getStatusCode());
         Assert.assertTrue(response.asString().contains("Request was not matched"));
-    }
+    }*/
 
     /*
         Print response
      */
-    private void printResponse(Response response){
+    private void printResponse(Response response) {
         System.out.println("\n=== Response is ===\n" +
                 response.getHeaders() + "\n\n" +
                 response.getStatusCode() + "\n\n" +
