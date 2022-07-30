@@ -1,0 +1,41 @@
+{
+    "mappings": [
+        {
+            "request": {
+                "method": "GET",
+                "url": "/one"
+            },
+            "response": {
+                "status": 200
+            }
+        },
+        {
+            "id": "8c5db8b0-2db4-4ad7-a99f-38c9b00da3f7",
+            "request": {
+		"method": "GET",
+                "url": "/test"
+            },
+            "response": {
+		"status": 200,
+                "body": "Base url"
+            }
+        },
+	{
+            "id": "8c5db8b0-2db4-4ad7-a99f-38c9b00da3f1",
+            "request": {
+		"method": "GET",
+                "urlPathPattern": "/test",
+		"queryParameters": {
+			"myid": {
+				"matches": "\\d+"
+			}
+		}
+            },
+            "response": {
+		"status": 200,
+                "body": "Digital \nSome str: {{randomValue length=20 type='ALPHANUMERIC'}}\nToday: {{now timezone='Europe/Moscow' format='yyyy-MM-dd HH:mm:ssZ'}}",
+				"transformers": ["response-template"]
+            }
+        }
+    ]
+}
