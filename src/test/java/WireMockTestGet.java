@@ -28,13 +28,14 @@ public class WireMockTestGet {
     @Parameterized.Parameters(name = "{index}: path({0}), resp={1}")
     public static Iterable<Object[]> data() {
         return Arrays.asList(new Object[][]
-                {       {getPath, 200},
+                {{getPath, 200},
                         {"/some_wrong_path", 404}
                 });
     }
 
     @Test
     public void test() {
+        System.out.printf("=== Running test with params path = %s, respCode = %d\n", path, respCode);
         RequestSpecification request = RestAssured.given();
         // Setting Request URL
         request.baseUri(baseURI);
@@ -51,24 +52,6 @@ public class WireMockTestGet {
 
         Assert.assertEquals(respCode, response.getStatusCode());
     }
-
-    /*@Test
-    public void test2() {
-        RequestSpecification request = RestAssured.given();
-        // Setting Request URL
-        request.baseUri(baseURI);
-        request.header("X_HEADER", "QWE");
-
-        System.out.println("=== Request is ===");
-        request.log().all();
-
-        // Send request
-        Response response = request.get("/some_wrong_path");
-        printResponse(response);
-
-        Assert.assertEquals(404, response.getStatusCode());
-        Assert.assertTrue(response.asString().contains("Request was not matched"));
-    }*/
 
     /*
         Print response
