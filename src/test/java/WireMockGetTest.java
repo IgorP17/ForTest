@@ -33,7 +33,7 @@ public class WireMockGetTest {
         return Arrays.asList(new Object[][]
                 {
                         {getPath, 200, "БУЙА"},
-                        {"/some_wrong_path", 404, "Request was not matched"}
+                        {"/some_wrong_path", 401, "Request was not matched"}
                 });
     }
 
