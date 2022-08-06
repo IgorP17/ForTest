@@ -1,9 +1,9 @@
 public class CompareItem {
 
-    private String actualResult;
-    private String expectedResult;
-    private CompareEnum compareEnum;
-    private String message;
+    private final String actualResult;
+    private final String expectedResult;
+    private final CompareEnum compareEnum;
+    private final String message;
 
     public CompareItem(String actualResult, String expectedResult, CompareEnum compareEnum, String message) {
         this.actualResult = actualResult;
