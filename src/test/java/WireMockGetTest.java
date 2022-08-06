@@ -29,7 +29,8 @@ public class WireMockGetTest {
     public static Iterable<Object[]> data() {
         return Arrays.asList(new Object[][]
                 {
-                        {Settings.getPath, 200, "БУЙА"},
+                        {Settings.getPath, 200, "Base url"},
+                        {Settings.getPath + Settings.getPathParams, 200, "БУЙА"},
                         {"/some_wrong_path", 404, "Request was not matched"}
                 });
     }
