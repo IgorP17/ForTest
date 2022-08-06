@@ -6,10 +6,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 @RunWith(Parameterized.class)
-public class WireMockTestGet {
+public class WireMockGetTest {
 
     // assume we have standalone wiremock running (config see in resources)
 
@@ -18,18 +19,21 @@ public class WireMockTestGet {
 
     private final String path;
     private final int respCode;
+    private final String bodyPart;
 
-    public WireMockTestGet(String path, int respCode) {
+    public WireMockGetTest(String path, int respCode, String bodyPart) {
         this.path = path;
         this.respCode = respCode;
+        this.bodyPart = bodyPart;
     }
 
 
     @Parameterized.Parameters(name = "{index}: path({0}), resp={1}")
     public static Iterable<Object[]> data() {
         return Arrays.asList(new Object[][]
-                {{getPath, 200},
-                        {"/some_wrong_path", 404}
+                {
+                        {getPath, 200, "БУЙА"},
+                        {"/some_wrong_path", 404, "Request was not matched"}
                 });
     }
 
@@ -49,8 +53,15 @@ public class WireMockTestGet {
         // Send request
         Response response = request.get(path);
         printResponse(response);
+        System.out.println("=== END Response ===");
 
-        Assert.assertEquals(respCode, response.getStatusCode());
+        ArrayList<CompareItem> compareItems = new ArrayList<>();
+        compareItems.add(new CompareItem(String.valueOf(response.getStatusCode()), String.valueOf(respCode), CompareEnum.EQUALS, "Status code"));
+        compareItems.add(new CompareItem(response.getBody().asString(), bodyPart, CompareEnum.CONTAINS, "Body"));
+
+        boolean result = CompareItems.compareItems(compareItems);
+
+        Assert.assertTrue("Checkings", result);
     }
 
     /*
