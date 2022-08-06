@@ -14,9 +14,6 @@ public class WireMockGetTest {
 
     // assume we have standalone wiremock running (config see in resources)
 
-    private final static String baseURI = "http://igor-virtualbox:8080";
-    private final static String getPath = "/test?myid=123";
-
     private final String path;
     private final int respCode;
     private final String bodyPart;
@@ -32,7 +29,7 @@ public class WireMockGetTest {
     public static Iterable<Object[]> data() {
         return Arrays.asList(new Object[][]
                 {
-                        {getPath, 200, "БУЙА"},
+                        {Settings.getPath, 200, "БУЙА"},
                         {"/some_wrong_path", 404, "Request was not matched"}
                 });
     }
@@ -42,7 +39,7 @@ public class WireMockGetTest {
         System.out.printf("=== Running test with params path = %s, respCode = %d\n", path, respCode);
         RequestSpecification request = RestAssured.given();
         // Setting Request URL
-        request.baseUri(baseURI);
+        request.baseUri(Settings.baseURI);
         request.header("X_HEADER", "QWE");
 
         System.out.println("=== Request is ===");
