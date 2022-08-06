@@ -51,7 +51,6 @@ public class WireMockGetTest {
         // Send request
         Response response = request.get(path);
         printResponse(response);
-        System.out.println("=== END Response ===");
 
         ArrayList<CompareItem> compareItems = new ArrayList<>();
         compareItems.add(new CompareItem(String.valueOf(response.getStatusCode()), String.valueOf(respCode), CompareEnum.EQUALS, "Status code"));
@@ -70,5 +69,6 @@ public class WireMockGetTest {
                 response.getHeaders() + "\n\n" +
                 response.getStatusCode() + "\n\n" +
                 response.asString());
+        System.out.println("=== END Response ===");
     }
 }
