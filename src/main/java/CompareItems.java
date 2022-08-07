@@ -1,26 +1,31 @@
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.List;
 
 public class CompareItems {
 
+    static Logger logger = LoggerFactory.getLogger(CompareItems.class);
+
     public static boolean compareItems(List<CompareItem> compareItems) {
         boolean result = true;
         for (CompareItem item : compareItems) {
-            System.out.printf("%s: compare method = %s, expected = %s, actual = %s, result = ",
+            logger.info("{}: compare method = {}, expected = {}, actual = {}",
                     item.getMessage(), item.getCompareEnum(), item.getExpectedResult(), item.getActualResult());
             switch (item.getCompareEnum()) {
                 case EQUALS:
                     if (item.getExpectedResult().equalsIgnoreCase(item.getActualResult())) {
-                        System.out.println("TRUE");
+                        logger.info("result = TRUE");
                     } else {
-                        System.out.println("FALSE");
+                        logger.info("result = FALSE");
                         result = false;
                     }
                     break;
                 case CONTAINS:
                     if (item.getActualResult().contains(item.getExpectedResult())) {
-                        System.out.println("TRUE");
+                        logger.info("result = TRUE");
                     } else {
-                        System.out.println("FALSE");
+                        logger.info("result = FALSE");
                         result = false;
                     }
                     break;

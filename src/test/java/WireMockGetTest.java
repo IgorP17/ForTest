@@ -5,6 +5,8 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,6 +19,8 @@ public class WireMockGetTest {
     private final String path;
     private final int respCode;
     private final String bodyPart;
+
+    Logger logger = LoggerFactory.getLogger(WireMockGetTest.class);
 
     public WireMockGetTest(String path, int respCode, String bodyPart) {
         this.path = path;
@@ -37,13 +41,13 @@ public class WireMockGetTest {
 
     @Test
     public void test() {
-        System.out.printf("=== Running test with params path = %s, respCode = %d\n", path, respCode);
+        logger.info("=== Running test with params path = {}, respCode = {}", path, respCode);
         RequestSpecification request = RestAssured.given();
         // Setting Request URL
         request.baseUri(Settings.baseURI);
         request.header("X_HEADER", "QWE");
 
-        System.out.println("=== Request is ===");
+        logger.info("=== Request is ===");
         request.log().all();/*.get(getPath).then()
                 .assertThat().statusCode(200)
                 .log().all();*/
@@ -65,10 +69,10 @@ public class WireMockGetTest {
         Print response
      */
     private void printResponse(Response response) {
-        System.out.println("\n=== Response is ===\n" +
+        logger.info("=== Response is ===\n" +
                 response.getHeaders() + "\n\n" +
                 response.getStatusCode() + "\n\n" +
                 response.asString());
-        System.out.println("=== END Response ===");
+        logger.info("=== END Response ===");
     }
 }
