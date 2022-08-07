@@ -22,7 +22,7 @@
         },
 	{
             "id": "8c5db8b0-2db4-4ad7-a99f-38c9b00da3f1",
-            "request": {
+	"request": {
 		"method": "GET",
                 "urlPathPattern": "/test",
 		"queryParameters": {
@@ -31,10 +31,47 @@
 			}
 		}
             },
-            "response": {
+	"response": {
+		"headers": {
+					"Content-Type": "text/plain;charset=UTF-8",
+					"X_HEADER": "{{request.headers.X_HEADER}}"
+        },
 		"status": 200,
-                "body": "Digital \nSome str: {{randomValue length=20 type='ALPHANUMERIC'}}\nToday: {{now timezone='Europe/Moscow' format='yyyy-MM-dd HH:mm:ssZ'}}",
+                "body": "Digital БУЙА\nSome str: {{randomValue length=20 type='ALPHANUMERIC'}}\nToday: {{now timezone='Europe/Moscow' format='yyyy-MM-dd HH:mm:ssZ'}}",
 				"transformers": ["response-template"]
+            }
+        },
+	{
+        "id": "8c5db8b0-2db4-4ad7-a99f-38c9b00da3f2",
+	"request": {
+		"method": "POST",
+                "urlPathPattern": "/post"
+            },
+	"response": {
+		"headers": {
+					"Content-Type": "application/json;charset=UTF-8"
+        },
+		"status": 200,
+                "body": "{\"id\": {{jsonPath request.body '$.id'}}, \"name\": \"{{jsonPath request.body '$.name'}}\", \"cost\": {{jsonPath request.body '$.cost'}}, \"result\": \"Update success\"}",
+		"transformers": ["response-template"]
+            }
+        },
+	{
+        "id": "8c5db8b0-2db4-4ad7-a99f-38c9b00da3f3",
+	"request": {
+		"method": "POST",
+                "urlPathPattern": "/post",
+				"bodyPatterns" : [  
+					{"matchesJsonPath" : "$[?(@.id == '666')]"}
+				]
+            },
+	"response": {
+		"headers": {
+					"Content-Type": "application/json;charset=UTF-8"
+        },
+		"status": 200,
+                "body": "{\"id\": {{jsonPath request.body '$.id'}}, \"name\": \"{{jsonPath request.body '$.name'}}\", \"cost\": {{jsonPath request.body '$.cost'}}, \"result\": \"Order not found\"}",
+		"transformers": ["response-template"]
             }
         }
     ]
