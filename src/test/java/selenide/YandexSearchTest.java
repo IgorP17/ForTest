@@ -27,7 +27,7 @@ public class YandexSearchTest {
 
 
     // будем искать такие слова
-    @Parameterized.Parameters
+    @Parameterized.Parameters(name = "{index}: search str = {0}")
     public static Collection<Object[]> data() {
         Object[][] data = new Object[][]{
                 {"selenide"},
