@@ -1,3 +1,5 @@
+package wiremock;
+
 public class Settings {
 
     public final static String baseURI = "http://igor-virtualbox:8080";

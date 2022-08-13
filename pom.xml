@@ -58,6 +58,14 @@
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
         </dependency>
+        <!-- selenide -->
+        <dependency>
+            <groupId>com.codeborne</groupId>
+            <artifactId>selenide</artifactId>
+            <version>6.7.1</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <build>

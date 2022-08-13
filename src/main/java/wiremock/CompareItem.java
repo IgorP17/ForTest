@@ -1,3 +1,5 @@
+package wiremock;
+
 public class CompareItem {
 
     private final String actualResult;
