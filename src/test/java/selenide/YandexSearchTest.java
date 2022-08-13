@@ -38,10 +38,10 @@ public class YandexSearchTest {
         return Arrays.asList(data);
     }
 
-    @Before
+/*    @Before
     public void setBrowser() {
         Configuration.browser = "firefox";
-    }
+    }*/
 
     @Test
     public void searchYandex() {
