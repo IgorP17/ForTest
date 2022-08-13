@@ -1,5 +1,7 @@
 package selenide;
 
+import com.codeborne.selenide.Configuration;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -36,6 +38,10 @@ public class YandexSearchTest {
         return Arrays.asList(data);
     }
 
+    @Before
+    public void setBrowser() {
+        Configuration.browser = "firefox";
+    }
 
     @Test
     public void searchYandex() {
