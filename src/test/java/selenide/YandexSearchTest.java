@@ -14,6 +14,8 @@ import java.util.Collection;
 import com.codeborne.selenide.ElementsCollection;
 import org.openqa.selenium.By;
 
+import io.qameta.allure.selenide.AllureSelenide;
+
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Condition.*;
 
@@ -37,6 +39,7 @@ public class YandexSearchTest {
         Object[][] data = new Object[][]{
                 {"selenide", BrowserEnum.CHROME.getName()},
                 {"футбол", BrowserEnum.CHROME.getName()},
+                {"буйа", BrowserEnum.CHROME.getName()},
                 {"бильярд", BrowserEnum.FIREFOX.getName()},
                 {"боулинг", BrowserEnum.FIREFOX.getName()}
         };
@@ -85,6 +88,9 @@ public class YandexSearchTest {
             ress.get(i).shouldHave(text(searchString));
         }
 
+        if (searchString.equalsIgnoreCase("буйа")){
+            $(By.className("extended-text__short")).shouldHave(text("AAAAAAA"));
+        }
 
     }
 
