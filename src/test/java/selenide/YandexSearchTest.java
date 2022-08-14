@@ -13,6 +13,9 @@ import java.util.Collection;
 
 import com.codeborne.selenide.ElementsCollection;
 import org.openqa.selenium.By;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import wiremock.WireMockGetTest;
 
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Condition.*;
@@ -23,6 +26,8 @@ public class YandexSearchTest {
 
     private final String searchString;
     private final String browser;
+
+    Logger logger = LoggerFactory.getLogger(YandexSearchTest.class);
 
     public YandexSearchTest(String searchString, String browser) {
         this.searchString = searchString;
@@ -59,7 +64,7 @@ public class YandexSearchTest {
 
     @Test
     public void searchYandex() {
-        System.out.println("=== Searching: \"" + searchString + "\" in " + browser + " ===");
+        logger.info("=== Searching: \"" + searchString + "\" in " + browser + " ===");
         open("https://yandex.ru");
         $(By.id("text")).setValue(searchString).pressEnter();
 //        $("#submit").click();
@@ -68,8 +73,8 @@ public class YandexSearchTest {
 
 //        String alertText = Selenide.switchTo().alert().getText();
 //        Selenide.switchTo().alert().accept();
-        System.out.println("=== First element: " + $(By.className("extended-text__short")).getText());
-        System.out.println("=== Found by locator: " + $$(By.className("extended-text__short")).size());
+        logger.info("=== First element: " + $(By.className("extended-text__short")).getText());
+        logger.info("=== Found by locator: " + $$(By.className("extended-text__short")).size());
 
         /*
         for (SelenideElement selenideElement : $$(By.className("extended-text__short"))) {
@@ -79,7 +84,7 @@ public class YandexSearchTest {
         }
         */
 
-        System.out.println("=== Check first 3 outs ===");
+        logger.info("=== Check first 3 outs ===");
         ElementsCollection ress = $$(By.className("extended-text__short"));
         for (int i = 0; i < 2; i++) {
             ress.get(i).shouldHave(text(searchString));
