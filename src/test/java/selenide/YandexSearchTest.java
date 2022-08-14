@@ -19,7 +19,7 @@ import static com.codeborne.selenide.Condition.*;
 @RunWith(Parameterized.class)
 public class YandexSearchTest {
 
-    private String searchString;
+    private final String searchString;
 
     public YandexSearchTest(String searchString) {
         this.searchString = searchString;
@@ -41,6 +41,9 @@ public class YandexSearchTest {
 /*    @Before
     public void setBrowser() {
         Configuration.browser = "firefox";
+
+        >mvn test -Dtest=selenide/* -Dselenide.browser=firefox
+
     }*/
 
     @Test
