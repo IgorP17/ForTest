@@ -2,7 +2,6 @@ package selenide;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
-import com.codeborne.selenide.logevents.SelenideLogger;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,8 +13,6 @@ import java.util.Collection;
 
 import com.codeborne.selenide.ElementsCollection;
 import org.openqa.selenium.By;
-
-import io.qameta.allure.selenide.AllureSelenide;
 
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Condition.*;
@@ -56,7 +53,6 @@ public class YandexSearchTest {
     @Before
     public void setBrowser() {
         Configuration.browser = this.browser;
-//        SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(false).);
 //        >mvn test -Dtest=selenide/* -Dselenide.browser=firefox
 
     }
