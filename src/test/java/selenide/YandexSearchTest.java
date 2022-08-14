@@ -1,6 +1,8 @@
 package selenide;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.WebDriverRunner;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,35 +22,44 @@ import static com.codeborne.selenide.Condition.*;
 public class YandexSearchTest {
 
     private final String searchString;
+    private final String browser;
 
-    public YandexSearchTest(String searchString) {
+    public YandexSearchTest(String searchString, String browser) {
         this.searchString = searchString;
+        this.browser = browser;
     }
 
 
-    // будем искать такие слова
-    @Parameterized.Parameters(name = "{index}: search str = {0}")
+    // will search the following words
+    @Parameterized.Parameters(name = "{index}: browser = {1}, search str = {0}")
     public static Collection<Object[]> data() {
+//        String browser = Configuration.browser;
         Object[][] data = new Object[][]{
-                {"selenide"},
-                {"футбол"},
-                {"бильярд"},
-                {"боулинг"}
+                {"selenide", BrowserEnum.CHROME.getName()},
+                {"футбол", BrowserEnum.CHROME.getName()},
+                {"бильярд", BrowserEnum.FIREFOX.getName()},
+                {"боулинг", BrowserEnum.FIREFOX.getName()}
         };
         return Arrays.asList(data);
     }
 
-/*    @Before
-    public void setBrowser() {
-        Configuration.browser = "firefox";
 
-        >mvn test -Dtest=selenide/* -Dselenide.browser=firefox
-
+    /*@Before
+    public void init() {
+//        String browserName = capabilities.getBrowserName();
     }*/
+
+    @Before
+    public void setBrowser() {
+        Configuration.browser = this.browser;
+
+//        >mvn test -Dtest=selenide/* -Dselenide.browser=firefox
+
+    }
 
     @Test
     public void searchYandex() {
-        System.out.println("=== Ищем слово \"" + searchString + "\" ===");
+        System.out.println("=== Searching: \"" + searchString + "\" in " + browser + " ===");
         open("https://yandex.ru");
         $(By.id("text")).setValue(searchString).pressEnter();
 //        $("#submit").click();
@@ -57,8 +68,8 @@ public class YandexSearchTest {
 
 //        String alertText = Selenide.switchTo().alert().getText();
 //        Selenide.switchTo().alert().accept();
-        System.out.println("=== Первый элемент с текстом = " + $(By.className("extended-text__short")).getText());
-        System.out.println("=== Всего по локатору нашли элементов = " + $$(By.className("extended-text__short")).size());
+        System.out.println("=== First element: " + $(By.className("extended-text__short")).getText());
+        System.out.println("=== Found by locator: " + $$(By.className("extended-text__short")).size());
 
         /*
         for (SelenideElement selenideElement : $$(By.className("extended-text__short"))) {
@@ -68,11 +79,18 @@ public class YandexSearchTest {
         }
         */
 
-        System.out.println("=== Проверим первые 3 выдачи ===");
+        System.out.println("=== Check first 3 outs ===");
         ElementsCollection ress = $$(By.className("extended-text__short"));
         for (int i = 0; i < 2; i++) {
             ress.get(i).shouldHave(text(searchString));
         }
 
+
+    }
+
+    @After
+    public void tearDown() {
+        // close browser - we run all test in the same browser?
+        WebDriverRunner.getWebDriver().close();
     }
 }
