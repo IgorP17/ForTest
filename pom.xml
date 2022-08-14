@@ -13,9 +13,6 @@
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
         <webdriver.gecko.driver>/home/igor/geckodriver</webdriver.gecko.driver>
-        <maven-surefire-plugin.version>3.0.0-M7</maven-surefire-plugin.version>
-        <aspectj.version>1.9.9.1</aspectj.version>
-        <allure-junit4.version>2.19.0</allure-junit4.version>
     </properties>
 
 
@@ -81,18 +78,6 @@
             <version>2.19.0</version>
             <scope>test</scope>
         </dependency>
-        <!-- allure junit 4 -->
-        <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-junit4</artifactId>
-            <version>${allure-junit4.version}</version>
-        </dependency>
-        <!-- aspect -->
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjtools</artifactId>
-            <version>${aspectj.version}</version>
-        </dependency>
     </dependencies>
 
     <build>
@@ -100,31 +85,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>${maven-surefire-plugin.version}</version>
+                <version>3.0.0-M7</version>
                 <configuration>
-                    <!--<redirectTestOutputToFile>true</redirectTestOutputToFile>-->
-                    <testFailureIgnore>false</testFailureIgnore>
-                    <argLine>-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"</argLine>
-                    <properties>
-                        <property>
-                            <name>listener</name>
-                            <value>io.qameta.allure.junit4.AllureJunit4</value>
-                        </property>
-                    </properties>
-                    <systemProperties>
-                        <property>
-                            <name>allure.results.directory</name>
-                            <value>${project.build.directory}/allure-results</value>
-                        </property>
-                    </systemProperties>
+                    <redirectTestOutputToFile>true</redirectTestOutputToFile>
                 </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.aspectj</groupId>
-                        <artifactId>aspectjweaver</artifactId>
-                        <version>${aspectj.version}</version>
-                    </dependency>
-                </dependencies>
             </plugin>
             <plugin>
                 <groupId>io.qameta.allure</groupId>
