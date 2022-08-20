@@ -1,7 +1,7 @@
 package selenide;
 
 public enum BrowserEnum {
-    CHROME("chrome"), FIREFOX("firefox");
+    CHROME("chrome"), FIREFOX("firefox"), OPERA("opera");
 
     private final String name;
 
