@@ -40,10 +40,10 @@ public class YandexSearchSelenoid4ParallelTest {
     public static Collection<Object[]> data() {
 //        String browser = Configuration.browser;
         Object[][] data = new Object[][]{
-                {"selenide", Configuration.browser}/*,
+                {"selenide", Configuration.browser},
                 {"футбол", Configuration.browser},
                 {"бильярд", Configuration.browser},
-                {"боулинг", Configuration.browser}*/
+                {"боулинг", Configuration.browser}
         };
         return Arrays.asList(data);
     }
@@ -58,6 +58,8 @@ public class YandexSearchSelenoid4ParallelTest {
     public void setBrowser() {
         Configuration.browser = this.browser;
 //        mvn -Dtest=selenide/YandexSearchSelenoid4ParallelTest  "-Dselenide.browser=firefox" test
+//        mvn -Dtest=selenide/YandexSearchSelenoid4ParallelTest  "-Dselenide.browser=chrome" "-Dsurefire.reportNameSuffix=xxx" test
+
         Configuration.remote = "http://igor-virtualbox:4444/wd/hub";
 //        Configuration.browser = "chrome";
 //        Configuration.browserSize = "1920x1080";
@@ -104,10 +106,10 @@ public class YandexSearchSelenoid4ParallelTest {
 
     }
 
-    @After
+    /*@After
     public void tearDown() {
         // close browser - we run all test in the same browser?
         // not actual for this case - can be removed ?
         WebDriverRunner.getWebDriver().close();
-    }
+    }*/
 }
