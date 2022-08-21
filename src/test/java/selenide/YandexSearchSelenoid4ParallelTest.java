@@ -42,7 +42,6 @@ public class YandexSearchSelenoid4ParallelTest {
         Object[][] data = new Object[][]{
                 {"selenide", Configuration.browser},
                 {"футбол", Configuration.browser},
-                {"буйа", Configuration.browser},
                 {"бильярд", Configuration.browser},
                 {"боулинг", Configuration.browser}
         };
