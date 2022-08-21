@@ -40,10 +40,10 @@ public class YandexSearchSelenoid4ParallelTest {
     public static Collection<Object[]> data() {
 //        String browser = Configuration.browser;
         Object[][] data = new Object[][]{
-                {"selenide", Configuration.browser},
+                {"selenide", Configuration.browser}/*,
                 {"футбол", Configuration.browser},
                 {"бильярд", Configuration.browser},
-                {"боулинг", Configuration.browser}
+                {"боулинг", Configuration.browser}*/
         };
         return Arrays.asList(data);
     }
