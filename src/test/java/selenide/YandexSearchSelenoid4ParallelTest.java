@@ -43,6 +43,7 @@ public class YandexSearchSelenoid4ParallelTest {
                 {"selenide", Configuration.browser},
                 {"футбол", Configuration.browser},
                 {"бильярд", Configuration.browser},
+                {"буйа", Configuration.browser},
                 {"боулинг", Configuration.browser}
         };
         return Arrays.asList(data);
