@@ -1,7 +1,7 @@
 [
   {
-    "name": "Проблема БУЙА",
+    "name": "Проблема БУЙА :)",
     "matchedStatuses": ["broken", "failed"],
-    "messageRegex": ".*Element should have text.*"
+    "messageRegex": ".*Element should have text.*\"буйа\".*"
   }
 ]
