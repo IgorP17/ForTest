@@ -96,9 +96,12 @@
     </dependencies>
 
     <build>
+        <sourceDirectory>${project.basedir}/src/java</sourceDirectory>
+        <outputDirectory>${project.basedir}/target</outputDirectory>
+        <testSourceDirectory>${project.basedir}/src/test</testSourceDirectory>
         <resources>
             <resource>
-                <directory>src/resources</directory>
+                <directory>${project.basedir}src/resources</directory>
             </resource>
         </resources>
         <plugins>

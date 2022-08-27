@@ -15,7 +15,6 @@ import com.codeborne.selenide.ElementsCollection;
 import org.openqa.selenium.By;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import wiremock.WireMockGetTest;
 
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Condition.*;
