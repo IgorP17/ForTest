@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Неизвестная проблема",
+    "matchedStatuses": ["broken", "failed"],
+    "messageRegex": ".*что-то пошло не так.*"
+  },
+  {
+    "name": "NPE",
+    "matchedStatuses": ["broken"],
+    "traceRegex": ".*NullPointerException.*"
+  },
+  {
+    "name": "Проблема БУЙА",
+    "matchedStatuses": ["broken", "failed"],
+    "messageRegex": ".*Element should have text \"буйа\".*"
+  }
+]
