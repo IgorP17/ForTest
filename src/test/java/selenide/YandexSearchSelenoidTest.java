@@ -65,7 +65,7 @@ public class YandexSearchSelenoidTest {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
                 "enableVNC", true,
-                "enableVideo", true
+                "enableVideo", false
         ));
         Configuration.browserCapabilities = capabilities;
 
