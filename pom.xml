@@ -101,7 +101,7 @@
         <testSourceDirectory>${project.basedir}/src/test</testSourceDirectory>
         <resources>
             <resource>
-                <directory>${project.basedir}src/resources</directory>
+                <directory>${project.basedir}/src/resources</directory>
             </resource>
         </resources>
         <plugins>
