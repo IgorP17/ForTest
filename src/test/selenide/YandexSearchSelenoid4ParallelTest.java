@@ -40,7 +40,7 @@ public class YandexSearchSelenoid4ParallelTest {
     public static Collection<Object[]> data() {
 //        String browser = Configuration.browser;
         Object[][] data = new Object[][]{
-                {"src/test/selenide", Configuration.browser},
+                {"selenide", Configuration.browser},
                 {"футбол", Configuration.browser},
                 {"бильярд", Configuration.browser},
                 {"буйа", Configuration.browser},
