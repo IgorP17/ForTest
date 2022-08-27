@@ -43,6 +43,7 @@ public class YandexSearchSelenoidTest {
                 {"selenide", BrowserEnum.CHROME.getName()},
                 {"футбол", BrowserEnum.CHROME.getName()},
                 {"буйа", BrowserEnum.CHROME.getName()},
+                {"буйа 1", BrowserEnum.CHROME.getName()},
                 {"бильярд", BrowserEnum.FIREFOX.getName()},
                 {"боулинг", BrowserEnum.FIREFOX.getName()}
         };

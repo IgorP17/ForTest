@@ -1,5 +1,10 @@
 [
   {
+    "name": "Проблема БУЙА 1",
+    "matchedStatuses": ["broken", "failed"],
+    "messageRegex": ".*Element should have text.*\"буйа 1\".*"
+  },
+  {
     "name": "Проблема БУЙА :)",
     "matchedStatuses": ["broken", "failed"],
     "messageRegex": ".*Element should have text.*\"буйа\".*"
