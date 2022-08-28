@@ -122,6 +122,10 @@
                     </properties>
                     <systemProperties>
                         <property>
+                            <name>log4j2.configurationFile</name>
+                            <value>${project.basedir}/src/resources/log4j2.xml</value>
+                        </property>
+                        <property>
                             <name>allure.results.directory</name>
                             <value>${project.build.directory}/allure-results</value>
                         </property>
