@@ -75,7 +75,7 @@ public class YandexSearchSelenoidTest {
     @Test
     public void searchYandex() {
         logger.info("=== Searching: \"" + searchString + "\" in " + browser + " ===");
-        open("https://yandex.ru");
+        open(URLs.baseSearchURL);
         $(By.id("text")).setValue(searchString).pressEnter();
 //        $("#submit").click();
 //        $(".loading_progress").should(disappear); // Само подождёт, пока элемент исчезнет
